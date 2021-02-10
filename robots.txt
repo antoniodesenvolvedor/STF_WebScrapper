@@ -1,0 +1,9 @@
+User-agent: Google
+Disallow:
+
+User-agent: *
+Disallow: /processos
+Disallow: /textos
+
+User-agent: AhrefsBot
+Disallow: /
