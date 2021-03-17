@@ -13,6 +13,7 @@ and save those terms in a relational database
 
 The structure to control each batch of data to be searched is in a relation database (SQL Server)
 
+#todo
 Rename the file sample_config.json to config.json
 Set your database configuration in the config.json renamed file
 
