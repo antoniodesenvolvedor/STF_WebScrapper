@@ -1,0 +1,58 @@
+.label_text{
+    margin-bottom: 5px;
+}
+
+.title_text{
+    text-align:center;
+    font-weight:bold;
+    font-size:25px;
+    margin-bottom:30px;
+}
+
+.grid_container {
+    display:flex;
+    justify-content:center;
+}
+
+body{
+   font-family: Verdana, Courier,"Times New Roman";
+   margin:15px;
+}
+
+
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+
+#table-wrapper {
+  position:relative;
+  margin-top:25px;
+}
+#table-scroll {
+  height:450px;
+  overflow:auto;
+  margin-top:20px;
+}
+#table-wrapper table {
+  width:100%;
+
+}
+#table-wrapper table * {
+  color:black;
+}
+#table-wrapper table thead th .text {
+  position:absolute;
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+  border:1px solid red;
+}
+
+th {
+  background: white;
+  position: sticky;
+  top: 0;
+}

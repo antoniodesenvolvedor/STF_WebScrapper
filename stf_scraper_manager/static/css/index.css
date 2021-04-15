@@ -1,0 +1,20 @@
+.label_text{
+    margin-bottom: 5px;
+}
+
+.title_text{
+    text-align:center;
+    font-weight:bold;
+    font-size:25px;
+    margin-bottom:30px;
+}
+
+.grid_container {
+    text-align:center;
+}
+
+body{
+   font-family: Verdana, Courier,"Times New Roman";
+   margin:15px;
+}
+
