@@ -19,11 +19,16 @@
 
     <div class="title_text">Tela de carga pesquisa jurisprudência STF</div>
     <div>
-        <div class="label_text"><label for="key_word">Pesquisar por </label></div>
-        <div><input type="text" id ="key_word" placeholder="Ex. Acidente de Carro"></div>
+        <form action="{% url 'pesquisa' %}" method="POST"> {% csrf_token %}
+            <div class="label_text"><label for="key_word">Pesquisar por </label></div>
+            <div><input type="text" id ="key_word" placeholder="Ex. Acidente de Carro" name="key_word" required></div>
+            <input type="submit" value="Pesquisar">
+        </form>
     </div>
 
 <div id="table-wrapper">
+    <div ><span class="texto">Termo pesquisado: </span>{{key_word}}</div>
+    <div ><span class="texto">Total:</span> {{total}}</div>
   <div id="table-scroll">
     <table>
         <thead>
@@ -41,11 +46,7 @@
                 {% endfor %}
             </tr>
             {% endfor %}
-
-
-
         </tbody>
-
     </table>
   </div>
 </div>

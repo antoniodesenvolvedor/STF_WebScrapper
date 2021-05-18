@@ -1,0 +1,7 @@
+requests
+pyodbc
+Django
+django-mssql-backend
+djehouty
+
+

@@ -27,8 +27,9 @@ class Scrapper:
         self._config['request']['query']['function_score']['query']['bool']['should'][0]['query_string']['query'] = new_word
         self._config['request']['query']['function_score']['query']['bool']['should'][1]['query_string']['query'] = new_word
         self._config['request']['query']['function_score']['query']['bool']['should'][2]['query_string']['query'] = new_word
-        self._config['request']['query']['function_score']['query']['bool']['filter'][0]['query_string']['query'] = new_word
         self._config['request']['query']['function_score']['query']['bool']['should'][3]['query_string']['query'] = new_word
+        self._config['request']['query']['function_score']['query']['bool']['filter'][0]['query_string']['query'] = new_word
+
         self._config['request']['highlight']['highlight_query']['bool']['filter'][0]['query_string']['query'] = new_word
         self._config['request']['highlight']['highlight_query']['bool']['should'][0]['query_string']['query'] = new_word
         self._config['request']['highlight']['highlight_query']['bool']['should'][3]['query_string']['query'] = new_word
@@ -36,13 +37,18 @@ class Scrapper:
         self._config['request']['highlight']['highlight_query']['bool']['should'][2]['query_string']['query'] = new_word
 
 
+
     def scrap(self):
 
         url = self._config['url']
         payload = self._config['request']
-        request = self._do_post(url, payload)
+        headers = self._config['headers']
+        print('Making request...')
+        request = self._do_post(url, payload, headers)
+        print('Extracting information...')
 
         law_suit_data, total = self._extract_law_suit_data(request)
+
 
         return [law_suit_data, total]
 
@@ -113,9 +119,10 @@ class Scrapper:
         return [law_suit_data, total]
 
 
-    def _do_post(self, url, payload) -> json:
+    def _do_post(self, url, payload, headers) -> json:
         payload = json.dumps(payload)
-        response = requests.post(url, payload, verify=False)
+        response = requests.post(url, payload, verify=False, headers=headers)
+        print(response)
         response = json.loads(response.text)
         return response
 

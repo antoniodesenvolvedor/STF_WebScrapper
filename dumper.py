@@ -1,7 +1,7 @@
 import pyodbc
 import json
 import traceback
-from sys import platform
+from graylog import Graylog
 
 class Dumper:
     def __init__(self):
@@ -55,6 +55,19 @@ class Dumper:
         self._connection.close()
 
 
+    def dump_total(self, total, idbusca):
+        print(f'dump total {total}')
+        query = '''
+            update STF.TB_BUSCA_JURISPRUDENCIA set total = ? where idbusca = ?
+             '''
+        try:
+            self.execute(query, (total, idbusca))
+            self._commit()
+        except Exception:
+            print('Fechando conexao erro:' + traceback.format_exc())
+            self._close_cnn()
+            self._connect()
+
     def dump_law_suit(self, law_suit_data, idbusca):
         insert_lawsuit_query = '''
             insert into STF.TB_RETORNO_JURISPRUDENCIA
@@ -72,6 +85,7 @@ class Dumper:
                     (getdate(), ?, ?, ?)
         '''
 
+        print(len(law_suit_data))
         for law_suit in law_suit_data:
 
             insert_lawsuit_tuple = (
@@ -100,6 +114,7 @@ class Dumper:
 
                 self._commit()
             except Exception:
+
                 print('Fechando conexao erro:' + traceback.format_exc())
                 self._close_cnn()
                 self._connect()
@@ -149,7 +164,7 @@ class Dumper:
 				,busca.idbusca
 			FROM
 				TB_LOTE LOTE WITH(NOLOCK)
-				INNER JOIN TB_LOTE_LINHA LINHA WITH(UPDLOCK) ON LOTE.IDLOTE = LINHA.IDLINHA
+				INNER JOIN TB_LOTE_LINHA LINHA WITH(UPDLOCK) ON LOTE.IDLOTE = LINHA.idlote
 				INNER JOIN STF.TB_BUSCA_JURISPRUDENCIA BUSCA WITH(NOLOCK) ON BUSCA.IDLINHA = LINHA.IDLINHA
             WHERE
                 LINHA.IDSTATUS = 1
@@ -158,7 +173,7 @@ class Dumper:
 						top 1 LINHA.IDLINHA
 					FROM
 						TB_LOTE LOTE WITH(NOLOCK)
-						INNER JOIN TB_LOTE_LINHA LINHA WITH(UPDLOCK) ON LOTE.IDLOTE = LINHA.IDLINHA
+						INNER JOIN TB_LOTE_LINHA LINHA WITH(UPDLOCK) ON LOTE.IDLOTE = LINHA.idlote
 						INNER JOIN STF.TB_BUSCA_JURISPRUDENCIA BUSCA WITH(NOLOCK) ON BUSCA.IDLINHA = LINHA.IDLINHA
 					WHERE
 						LINHA.IDSTATUS = 1

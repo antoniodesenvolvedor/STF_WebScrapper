@@ -6,6 +6,21 @@
     "server": "",
     "database": ""
   },
+  "headers": {
+    "authority": "jurisprudencia.stf.jus.br",
+    "sec-ch-ua": "' Not A;Brand';v='99', 'Chromium';v='90', 'Google Chrome';v='90'",
+    "accept": "application/json, text/plain, */*",
+    "sec-ch-ua-mobile": "?0",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+    "content-type": "application/json",
+    "origin": "https://jurisprudencia.stf.jus.br",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "https://jurisprudencia.stf.jus.br/pages/search?base=acordaos&pesquisa_inteiro_teor=false&sinonimo=true&plural=true&radicais=false&buscaExata=true&page=1&pageSize=10&queryString=lula&sort=_score&sortBy=desc",
+    "accept-language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+    "cookie": "_ga=GA1.3.1449202383.1612920054; _hjid=6fc528a9-bb5c-4211-83a3-111b0733e1b8; __utmz=60534895.1612921975.1.1.utmcsr=portal.stf.jus.br|utmccn=(referral)|utmcmd=referral|utmcct=/; __utma=60534895.1449202383.1612920054.1613471456.1615944305.4; _gid=GA1.3.1705456233.1619654108; _hjTLDTest=1",
+  },
   "request": {
     "query": {
       "function_score": {
