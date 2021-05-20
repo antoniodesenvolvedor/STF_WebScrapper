@@ -3,7 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from flask import Flask, request
 import json
-
+from settings_hide import mail_credentials
 
 
 class mailSender:
@@ -11,8 +11,8 @@ class mailSender:
     def __init__(self):
         self._host = 'smtp.gmail.com'
         self._port = 587
-        self._login = 'antoniodesenvolvedor2@gmail.com'
-        self._password = 'Xsalada3'
+        self._login = mail_credentials["login"]
+        self._password = mail_credentials["password"]
 
 
     def send_mail(self, subject, message, recipient):
